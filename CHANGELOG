@@ -1,3 +1,7 @@
+### Autust 6, 2009
+- Remove S3 support
+- Add FTP support
+
 ### January 29, 2009
 - Added bucket name to the list of keys pulled from amazon_s3.yml (Jonathan Vaught)
 - Uses RightAWS instead of AWS-S3 (Randy Schmidt)
@@ -12,3 +16,4 @@ Multiple Rails environments, Postgres, epoch timestamps, cleanup, and more!
 - Clean up README (Markdown would be super)
 - DRY up backup_fu.rb
 - Specs, specs, specs
+
