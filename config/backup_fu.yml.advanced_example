@@ -1,14 +1,13 @@
  # The app_name is used as the backup filename prefix
 app_name: replace_me
-# You must create the s3_bucket specified below via an external tool like S3 Browser, etc
-s3_bucket: some-s3-bucket
-aws_access_key_id: --replace me with your AWS access key id--
-aws_secret_access_key: --replace me with your AWS secret access key--
+ftp_host: replace_me
+ftp_user: replace_me
+ftp_password: replace_me
 
 # Advanced customizations
 
 # Use dynamic bucket path  with erb
-s3_bucket: <%=  %>
+ftp_host: <%=  %>
 
 backup and compress all app files w/o log/* and tmp/* dirs
 [config sample]
@@ -51,3 +50,4 @@ nice_level: 15
 
 # Set the number of most recent backups to keep when running the cleanup task
 keep_backups: 10
+

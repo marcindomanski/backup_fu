@@ -1,19 +1,19 @@
 development:
   # The app_name is used as the backup filename prefix
   app_name: replace_me
-  # You must create the s3_bucket specified below via an external tool like S3 Browser, etc
-  s3_bucket: some-s3-bucket
-  aws_access_key_id: --replace me with your AWS access key id--
-  aws_secret_access_key: --replace me with your AWS secret access key--
+  ftp_host: replace_me
+  ftp_user: replace_me
+  ftp_password: replace_me
 
 staging:
   app_name: replace_me
-  s3_bucket: some-s3-bucket
-  aws_access_key_id: --replace me with your AWS access key id--
-  aws_secret_access_key: --replace me with your AWS secret access key--
+  ftp_host: replace_me
+  ftp_user: replace_me
+  ftp_password: replace_me
 
 production:
   app_name: replace_me
-  s3_bucket: some-s3-bucket
-  aws_access_key_id: --replace me with your AWS access key id--
-  aws_secret_access_key: --replace me with your AWS secret access key--
+  ftp_host: replace_me
+  ftp_user: replace_me
+  ftp_password: replace_me
+
