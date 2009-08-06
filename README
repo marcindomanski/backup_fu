@@ -4,22 +4,16 @@ BackupFu
 The backup_fu plugin makes it redonkulously easy to:
 
  A) dump your database and/or static files to tar/gzipped or zipped archives, and
- B) upload these archives to a private Amazon S3 bucket for safekeeping
+ B) upload these archives to a FTP server for safekeeping
 
 Allows restore of PostgreSQL databases.
-
-It also uses credentials in config/amazon_s3.yml if not supplied in backup_fu.yml
 
 Installation
 ============
 
-The 'right_aws' gem is required for backup_fu to function properly.  Install with:
-
-  sudo gem install right_aws
-
 Install the plugin with:
 
-  script/plugin install git://github.com/gravelpup/backup_fu.git
+  script/plugin install git://github.com/ghandal/backup_fu.git
 
 
 Configuration
@@ -54,9 +48,9 @@ Backing up both your database + static files:
 
   rake backup_fu:all
 
-Restoring from S3:
-  BACKUP_FILE=myapp_1999-12-31_12345679_db.tar.gz rake backup_fu:restore
-  
+Restoring from FTP:
+  rake backup_fu:restore BACKUP_FILE=myapp_1999-12-31_12345679_db.tar.gz
+
 Advanced Configuration
 ======================
 
@@ -92,7 +86,7 @@ If you are experiencing any difficulties, the first thing you should do is enabl
 dropping this into config/backup_fu.yml:
 
   verbose: true
-	
+
 --- Mysqldump Issues
 
 If your 'mysqldump' command is not in your path, you will need to specify it explicitly.
@@ -145,9 +139,10 @@ This may result if you are using a symlink for your static dir, such as:
   public/static -> /shared/apps/foo/static
 
 The solution to this is to specify the absolute static path in config/backup_fu.yml:
- 
+
   static_paths: /shared/apps/foo/static
 
 
 
 Copyright (c) 2009, released under the MIT license
+
