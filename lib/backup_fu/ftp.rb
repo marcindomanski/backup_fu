@@ -29,6 +29,7 @@ module BackupFu
 
     private
     def check_config(options)
+      @options = {}
       @options[:host] = options[:ftp_host]
       raise(FTPConfigError, "FTP hostname (ftp_host) is not set in config/backup_fu.yml. If you do not want to use FTP provider, change provider in config/backup_fu.yml to s3 or local") if @options[:host].blank?
 

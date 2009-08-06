@@ -26,6 +26,7 @@ module BackupFu
 
     private
     def check_config(options)
+      @options = {}
       @options[:access_key_id] = ENV['AMAZON_ACCESS_KEY_ID'] || options[:aws_access_key_id]
       @options[:secret_access_key] = ENV['AMAZON_SECRET_ACCESS_KEY'] || options[:aws_secret_access_key]
       raise(S3ConfigError, "AWS Access Key ID or AWS Secret Key not set in config/backup_fu.yml. If you do not want to user AWS S3 provider, change provider in config/backup_fu.yml to ftp or local") if @options[:access_key_id].blank? || @options[:access_key_id].include?('--replace me') || @options[:secret_access_key].include?('--replace me')
