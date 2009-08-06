@@ -4,9 +4,9 @@ $:.unshift(File.dirname(__FILE__) + '/../lib')
 require 'backup_fu'
 $backup_fu_path = File.join(File.dirname(__FILE__), '..')
 
-desc "Dumps the database and backs it up remotely to Amazon S3. (task added by: backup_fu)"
+desc "Dumps the database and backs it up remotely using external provider. (task added by: backup_fu)"
 task :backup do
-  b = BackupFu.new
+  b = BackupFu::Backup.new
   b.backup
 end
 
@@ -24,41 +24,41 @@ namespace :backup_fu do
     end
   end
 
-  desc "Dumps the database locally.  Does *not* upload to FTP."
+  desc "Dumps the database locally.  Does *not* upload to external provider."
   task :dump do
-    b = BackupFu.new
+    b = BackupFu::Backup.new
     b.dump
   end
 
-  desc "Same as 'rake backup'. Dumps the database and backs it up remotely to FTP server."
+  desc "Same as 'rake backup'. Dumps the database and backs it up remotely using configured provider."
   task :backup do
-    b = BackupFu.new
+    b = BackupFu::Backup.new
     b.backup
   end
 
   desc "Backs up both the DB and static files."
   task :all do
-    b = BackupFu.new
+    b = BackupFu::Backup.new
     b.backup
     b.backup_static
   end
 
   desc "Clean up old backups. By default 5 backups are kept (you can change this with with keep_backups key in config/backup_fu.yml)."
   task :cleanup do
-    b = BackupFu.new
+    b = BackupFu::Backup.new
     b.cleanup
   end
 
-  desc "List backups on FTP"
-  task :ftp_backups do
-    b = BackupFu.new
+  desc "List backups stored on current provider"
+  task :list_backups do
+    b = BackupFu::Backup.new
     backups = b.list_backups
     pp backups
   end
 
-  desc "Pull a backup file from FTP and overwrite the database with it"
+  desc "Pull a backup file from used provider and overwrite the database with it"
   task :restore do
-    b = BackupFu.new
+    b = BackupFu::Backup.new
     backup_file = ENV['BACKUP_FILE']
     if backup_file.blank?
       puts "You need to specify a backup file to restore.  Usage:"
@@ -72,13 +72,13 @@ namespace :backup_fu do
 
     desc "Zips or Tars and gzips static application files locally.  Does *not* upload to FTP."
     task :dump do
-      b = BackupFu.new
+      b = BackupFu::Backup.new
       b.dump_static
     end
 
-    desc "Backups up static files to FTP. For configuration see the backup_fu README."
+    desc "Backups up static files to used provider. For configuration see the backup_fu README."
     task :backup do
-      b = BackupFu.new
+      b = BackupFu::Backup.new
       b.backup_static
     end
   end
