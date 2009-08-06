@@ -1,5 +1,6 @@
  # The app_name is used as the backup filename prefix
 app_name: replace_me
+provider: ftp
 ftp_host: replace_me
 ftp_user: replace_me
 ftp_password: replace_me
@@ -8,6 +9,9 @@ ftp_password: replace_me
 
 # Use dynamic bucket path  with erb
 ftp_host: <%=  %>
+
+# Set ftp directory to store backups (default is backups/)
+remote_backup_dir: my-app/backups
 
 backup and compress all app files w/o log/* and tmp/* dirs
 [config sample]
