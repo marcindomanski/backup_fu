@@ -197,6 +197,7 @@ class BackupFu
       @ftp.mkdir(@fu_conf[:remote_backup_dir])
       @ftp.chdir(@fu_conf[:remote_backup_dir])
     end
+    @ftp
   end
 
   def check_conf
