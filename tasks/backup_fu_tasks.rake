@@ -24,13 +24,13 @@ namespace :backup_fu do
     end
   end
 
-  desc "Dumps the database locally.  Does *not* upload to S3."
+  desc "Dumps the database locally.  Does *not* upload to FTP."
   task :dump do
     b = BackupFu.new
     b.dump
   end
 
-  desc "Same as 'rake backup'. Dumps the database and backs it up remotely to Amazon S3."
+  desc "Same as 'rake backup'. Dumps the database and backs it up remotely to FTP server."
   task :backup do
     b = BackupFu.new
     b.backup
@@ -70,13 +70,13 @@ namespace :backup_fu do
 
   namespace :static do
 
-    desc "Zips or Tars and gzips static application files locally.  Does *not* upload to S3."
+    desc "Zips or Tars and gzips static application files locally.  Does *not* upload to FTP."
     task :dump do
       b = BackupFu.new
       b.dump_static
     end
 
-    desc "Backups up static files to Amazon S3. For configuration see the backup_fu README."
+    desc "Backups up static files to FTP. For configuration see the backup_fu README."
     task :backup do
       b = BackupFu.new
       b.backup_static

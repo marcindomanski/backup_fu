@@ -78,9 +78,9 @@ class BackupFu
     dump
 
     file = final_db_dump_path()
-    puts "\nBacking up to FTP: #{file}\n" if @verbose && !@fu_conf[:disable_ftp]
+    puts "\nBacking up to FTP: #{file}\n" if @verbose
 
-    store_file(file) unless @fu_conf[:disable_ftp]
+    store_file(file)
   end
 
   def list_backups
@@ -153,9 +153,9 @@ class BackupFu
     dump_static
 
     file = final_static_dump_path()
-    puts "\nBacking up Static files to FTP: #{file}\n" if @verbose && !@fu_conf[:disable_ftp]
+    puts "\nBacking up Static files to FTP: #{file}\n" if @verbose
 
-    store_file(file) unless @fu_conf[:disable_ftp]
+    store_file(file)
   end
 
   def cleanup
