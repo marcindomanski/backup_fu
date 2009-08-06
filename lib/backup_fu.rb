@@ -191,8 +191,12 @@ class BackupFu
   def ftp_connection
     @ftp ||= Net::FTP.new(@fu_conf[:ftp_host])
     @ftp.login(@fu_conf[:ftp_user],@fu_conf[:ftp_password])
-    @ftp.mkdir(@fu_conf[:remote_backup_dir])
-    @ftp.chdir(@fu_conf[:remote_backup_dir])
+    begin
+      @ftp.chdir(@fu_conf[:remote_backup_dir])
+    rescue
+      @ftp.mkdir(@fu_conf[:remote_backup_dir])
+      @ftp.chdir(@fu_conf[:remote_backup_dir])
+    end
   end
 
   def check_conf
