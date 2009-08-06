@@ -3,8 +3,8 @@ BackupFu
 
 The backup_fu plugin makes it redonkulously easy to:
 
- A) dump your database and/or static files to tar/gzipped or zipped archives, and
- B) upload these archives to a FTP server for safekeeping
+ A) dump your database and/or static files to tar/gzipped or zipped archives
+ B) upload these archives using external provider (currently AWS S3 and FTP server are supported)
 
 Allows restore of PostgreSQL databases.
 

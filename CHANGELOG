@@ -1,6 +1,6 @@
-### Autust 6, 2009
-- Remove S3 support
-- Add FTP support
+### August 6, 2009
+- Refactored AWS S3 built-in module to external provider
+- Added FTP and local providers
 
 ### January 29, 2009
 - Added bucket name to the list of keys pulled from amazon_s3.yml (Jonathan Vaught)
