@@ -15,6 +15,10 @@ module BackupFu
       end
     end
 
+    def delete(file)
+      @ftp.delete(file)
+    end
+
     def put(file)
       @ftp.put(file)
     end
@@ -24,7 +28,7 @@ module BackupFu
     end
 
     def list
-      @ftp.list("*")
+      @ftp.list("*").map{|f| f.split(" ").last}
     end
 
     private

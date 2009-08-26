@@ -6,6 +6,10 @@ module BackupFu
       @dir = options[:dump_base_path] || File.join(RAILS_ROOT, 'tmp', 'backup')
     end
 
+    def delete(file)
+      File.delete(file)
+    end
+
     def put(file)
     end
 

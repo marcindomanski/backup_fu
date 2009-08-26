@@ -10,6 +10,11 @@ module BackupFu
       @s3_bucket = s3.bucket(@options[:bucket], true, 'private')
     end
 
+    def delete(file)
+      key = @s3_bucket.key(File.basename(file))
+      key.delete()
+    end
+
     def put(file)
       key = @s3_bucket.key(File.basename(file))
       key.data = open(file)

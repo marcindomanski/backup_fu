@@ -176,26 +176,29 @@ module BackupFu
 
     def cleanup
       count = @fu_conf[:keep_backups].to_i
-      backups = Dir.glob("#{dump_base_path}/*.{sql}")
-      if count >= backups.length
-        puts "no old backups to cleanup"
+      backups = @provider.list
+      locals  = Dir.glob("#{dump_base_path}/*")
+
+      if count >= locals.length
+        puts "no old local backups to cleanup"
       else
-        puts "keeping #{count} of #{backups.length} backups"
+        puts "keeping #{count} of #{locals.length} local backups"
 
-        files_to_remove = backups - backups.last(count)
-
-        if(!@fu_conf[:disable_compression])
-          if(@fu_conf[:compressor] == 'zip')
-            files_to_remove = files_to_remove.concat(Dir.glob("#{dump_base_path}/*.{zip}")[0, files_to_remove.length])
-          else
-            files_to_remove = files_to_remove.concat(Dir.glob("#{dump_base_path}/*.{gz}")[0, files_to_remove.length])
-          end
-        end
-
+        files_to_remove = locals - locals.last(count)
         files_to_remove.each do |f|
           File.delete(f)
         end
+      end
 
+      if count >= backups.length
+        puts "no old backups to cleanup"
+      else
+        puts "keeping #{count} of #{backups.length} remote backups"
+
+        files_to_remove = backups - backups.last(count)
+        files_to_remove.each do |f|
+          @provider.delete(f)
+        end
       end
     end
 
